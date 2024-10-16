@@ -1,8 +1,10 @@
-import unittest
-from app.models import User, Permission, AnonymousUser, Role, Follow
-from app import create_app, db
 import time
+import unittest
 from datetime import datetime
+
+from app import create_app, db
+from app.models import User, Permission, AnonymousUser, Role, Follow
+
 
 class UserModelTestCase(unittest.TestCase):
     def setUp(self):

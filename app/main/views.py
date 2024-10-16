@@ -1,18 +1,19 @@
-from datetime import datetime
-from flask import render_template, redirect, url_for, session, flash, abort, request,current_app, make_response
-from . import main
-from .forms import NameForm, EditProfileForm, EditProfileAdminForm, PostForm, CommentForm
-from .. import db
-from ..models import User, Role, Permission, Post, Comment
-from flask_login import login_required
+from flask import render_template, redirect, url_for, flash, abort, request,current_app, make_response
+from flask import render_template, redirect, url_for, flash, abort, request, current_app, make_response
 from flask_login import current_user
+from flask_login import login_required
+from flask_sqlalchemy.record_queries import get_recorded_queries
+
+from . import main
+from .forms import EditProfileForm, EditProfileAdminForm, PostForm, CommentForm
+from .. import db
 from ..decorators import admin_required, permission_required
-from flask_sqlalchemy import get_debug_queries
+from ..models import User, Role, Permission, Post, Comment
 
 
 @main.after_app_request
 def after_request(response):
-    for query in get_debug_queries():
+    for query in get_recorded_queries():
         if query.duration >= current_app.config['FLASKY_SLOW_DB_QUERY_TIME']:
             current_app.logger.warning(
                 'Slow query: %s\nParameters: %s\nDuration: %s\nContext:%s\n' %
@@ -199,7 +200,7 @@ def index():
         query = Post.query
 
     pagination = query.order_by(Post.timestamp.desc()).paginate(
-        page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
+        page=page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
         error_out=False
     )
     posts = pagination.items

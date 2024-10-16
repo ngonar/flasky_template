@@ -1,7 +1,9 @@
+import re
 import unittest
+
 from app import create_app, db
 from app.models import User, Role
-import re
+
 
 class FlaskClientTestCase(unittest.TestCase):
 

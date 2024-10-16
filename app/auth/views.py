@@ -1,17 +1,18 @@
-from flask import render_template, redirect, request, url_for, session, flash
-from . import auth
-from .forms import LoginForm
-from .forms import RegistrationForm
-from .forms import ChangePasswordForm
-from .forms import PasswordResetRequestForm
-from .forms import PasswordResetForm
-from .forms import ChangeEmailForm
-from ..models import User
+from flask import render_template, redirect, request, url_for, flash
+from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user, login_required
+
+from . import auth
+from .forms import ChangeEmailForm
+from .forms import ChangePasswordForm
+from .forms import LoginForm
+from .forms import PasswordResetForm
+from .forms import PasswordResetRequestForm
+from .forms import RegistrationForm
 from .. import db
 from ..email import send_email
-from flask_login import current_user
+from ..models import User
 
 
 @auth.before_app_request

@@ -1,8 +1,9 @@
-from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired, Length, Email, Regexp
-from wtforms import StringField, SubmitField, TextAreaField, BooleanField, SelectField, ValidationError
-from ..models import Role, User
 from flask_pagedown.fields import PageDownField
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, TextAreaField, BooleanField, SelectField, ValidationError
+from wtforms.validators import DataRequired, Length, Email, Regexp
+
+from ..models import Role, User
 
 
 class CommentForm(FlaskForm):

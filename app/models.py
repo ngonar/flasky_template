@@ -1,15 +1,18 @@
-from . import db
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin, AnonymousUserMixin
-from . import login_manager
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from flask import current_app
-from datetime import datetime
 import hashlib
-from flask import request, url_for
-from markdown import markdown
+from datetime import datetime
+
 import bleach
+from flask import current_app
+from flask import url_for
+from flask_login import UserMixin, AnonymousUserMixin
+# from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous.url_safe import URLSafeTimedSerializer as Serializer
+from markdown import markdown
+from werkzeug.security import generate_password_hash, check_password_hash
+
 from app.exceptions import ValidationError
+from . import db
+from . import login_manager
 
 
 class Comment(db.Model):
